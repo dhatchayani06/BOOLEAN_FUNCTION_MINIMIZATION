@@ -16,8 +16,7 @@ Hardware – PCs, Cyclone II , USB flasher
 
 **Theory**
 
-A combinational circuit is a circuit in which the output depends on the present combination of inputs. Combinational circuits are made up of logic gates. The output of each logic gate is determined by its logic function. Combinational circuits can be made using various logic gates, such as AND gates, OR gates, and NOT gates.
-
+**Logic Diagram**
 
 **Procedure**
 
@@ -34,51 +33,48 @@ A combinational circuit is a circuit in which the output depends on the present 
 
 **Program:**
 
-```
-/* Program to implement the given logic function and to verify its operations in quartus using Verilog programming. 
-
-Developed by: dhatchayani r
-RegisterNumber: 24007641
-
-*/
-```
-
-```py
-//Program to compute the function f1=a'b'c'd'+ac'd'+b'cd'+a'bcd+bc'd
-//f2=xy'z+x'y'z+w'xy+wx'y+wxy
-// simplify the logic using Boolean minimization/k map 
-//compute f2 and write verilog code for f2 as like f1
-
-module EX_02(a,b,c,d,w,x,y,z,f1,f2);
-input a,b,c,d,w,x,y,z;
-output f1,f2;
-wire adash,bdash,cdash,ddash,ydash,p,q,r,s,t,u;
-not(adash,a);
-not(bdash,b);
-not(cdash,c);
-not(ddash,d);
-not(ydash,y);
-and(p,bdash,ddash);
-and(q,adash,b,d);
-and(r,a,b,cdash);
-or(f1,p,q,r);
-
-wire ybar,M,N,O;
-not(ybar,y);
-and(M,w,y);
-and(N,x,y);
-and(O,z,ybar);
-or(f2,M,N,O);
+~~~
+module exp2a(a,b,c,d,F1);
+intput a,b,c,d;
+output F1;
+assign F1=((~b&~d)|(~a&b&d)|(a&b&~c));
 endmodule
-```
+
+module exp2b(w,x,y,z,F2)
+intput w,x,y,z;
+output F2;
+assign F2=((~y&z)|(x&y)|(w&y));
+endmodule
+~~~
+
+
 
 
 **Output:**
-![image](https://github.com/gauthamkrishna7/BOOLEAN_FUNCTION_MINIMIZATION/assets/141175025/86cc988b-b5fd-4693-a0a5-4a879656e903)
+
+**RTL**
+
+Boolean function minimization f1
+![image](https://github.com/user-attachments/assets/90786a86-8a2c-4447-93e4-f461f4d7a605)
+
+Boolean function minimization f2
+
+![image](https://github.com/user-attachments/assets/b2e430a3-b528-4bdd-bee9-da2f6c4d24e3)
+
+
+**Timing Diagram**
+Boolean function minimization f1
+
+![image](https://github.com/user-attachments/assets/333acda7-b1cb-4509-bad2-1c32c88a9f50)
+
+Boolean function minimization f2
+
+![image](https://github.com/user-attachments/assets/3ac4edbc-b6f8-4dcb-8043-ccfdf72811bc)
 
 
 
 **Result:**
 
 Thus the given logic functions are implemented using and their operations are verified using Verilog programming.
+
 
